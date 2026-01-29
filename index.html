@@ -9,6 +9,11 @@
 <body>
 
   <div class="pokedex-container">
+    <!-- Évoli caché -->
+    <div class="hidden-eevee" onclick="fetchPokemon('eevee')" title="Tu m'as trouvé ! 🎉">
+      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png" alt="Évoli caché" />
+    </div>
+    
     <!-- Partie gauche du Pokédex -->
     <div class="pokedex-left">
       <!-- Lentilles décoratives -->
@@ -64,6 +69,7 @@
         <div class="panel-header">
           <span class="panel-icon">⭐</span>
           <h3>À découvrir</h3>
+          <button id="refresh-recommendations" class="btn-clear" title="Nouvelles suggestions">🔄</button>
         </div>
         <div class="recommendations" id="recommendations">
           <!-- Les recommandations seront insérées ici -->
