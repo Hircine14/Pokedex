@@ -147,7 +147,7 @@ async function loadRecommendations() {
   recommendationsContainer.innerHTML = '<div class="loading">Chargement</div>';
   
   try {
-    const randomIds = getRandomPokemonIds(10);
+    const randomIds = getRandomPokemonIds(5);
     const pokemonPromises = randomIds.map(id => 
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(r => r.json())
