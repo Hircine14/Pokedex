@@ -1,4 +1,4 @@
-//DOM Call
+// Éléments DOM
 const input = document.getElementById('pokemon-input');
 const searchBtn = document.getElementById('search-btn');
 const mainScreen = document.getElementById('main-screen');
@@ -7,7 +7,9 @@ const historyContainer = document.getElementById('history');
 const clearHistoryBtn = document.getElementById('clear-history');
 const refreshRecommendationsBtn = document.getElementById('refresh-recommendations');
 
-
+// Données
+let searchHistory = JSON.parse(localStorage.getItem('pokemonHistory')) || [];
+const TOTAL_POKEMON = 1025; // Nombre total de Pokémon dans l'API
 
 // Couleurs des types
 const typeColors = {
@@ -30,14 +32,6 @@ const typeColors = {
   steel: '#B8B8D0',
   fairy: '#EE99AC'
 };
-
-
-
-// Données
-let searchHistory = JSON.parse(localStorage.getItem('pokemonHistory')) || [];
-const TOTAL_POKEMON = 1025; // Nombre total de Pokémon dans l'API
-
-
 
 // Générer des IDs aléatoires uniques
 function getRandomPokemonIds(count) {
@@ -154,7 +148,7 @@ async function loadRecommendations() {
   recommendationsContainer.innerHTML = '<div class="loading">Chargement</div>';
   
   try {
-
+    const randomIds = getRandomPokemonIds(10);
     const pokemonPromises = randomIds.map(id => 
       fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
         .then(r => r.json())
@@ -233,3 +227,4 @@ function clearHistory() {
     localStorage.removeItem('pokemonHistory');
     displayHistory();
   }
+}
