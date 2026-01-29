@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pokédex Rétro</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <div class="pokedex-container">
+    <!-- Partie gauche du Pokédex -->
+    <div class="pokedex-left">
+      <!-- Lentilles décoratives -->
+      <div class="pokedex-lights">
+        <div class="light light-main"></div>
+        <div class="light-row">
+          <div class="light light-red"></div>
+          <div class="light light-yellow"></div>
+          <div class="light light-green"></div>
+        </div>
+      </div>
+
+      <!-- Écran principal -->
+      <div class="main-screen">
+        <div class="screen-header">
+          <div class="screen-dots">
+            <span></span><span></span><span></span>
+          </div>
+          <div class="screen-speaker"></div>
+        </div>
+        
+        <div class="screen-content" id="main-screen">
+          <div class="screen-standby">
+            <div class="pokeball-icon">⚪</div>
+            <p>Recherchez un Pokémon...</p>
+          </div>
+        </div>
+
+        <div class="screen-footer">
+          <div class="led led-red"></div>
+          <div class="led led-blue"></div>
+        </div>
+      </div>
+
+      <!-- Contrôles -->
+      <div class="controls">
+        <div class="search-section">
+          <input 
+            type="text" 
+            id="pokemon-input" 
+            placeholder="Nom ou numéro..."
+            autocomplete="off"
+          />
+          <button id="search-btn" class="btn-search">GO</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Partie droite du Pokédex -->
+    <div class="pokedex-right">
+      <!-- Section Recommandations -->
+      <div class="side-panel">
+        <div class="panel-header">
+          <span class="panel-icon">⭐</span>
+          <h3>À découvrir</h3>
+        </div>
+        <div class="recommendations" id="recommendations">
+          <!-- Les recommandations seront insérées ici -->
+        </div>
+      </div>
+
+      <!-- Section Historique -->
+      <div class="side-panel">
+        <div class="panel-header">
+          <span class="panel-icon">📜</span>
+          <h3>Historique</h3>
+          <button id="clear-history" class="btn-clear">✕</button>
+        </div>
+        <div class="history" id="history">
+          <p class="empty-state">Aucun Pokémon recherché</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="pokedex-script.js"></script>
+</body>
+</html>
