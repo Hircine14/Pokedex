@@ -8,8 +8,7 @@ const clearHistoryBtn = document.getElementById('clear-history');
 const refreshRecommendationsBtn = document.getElementById('refresh-recommendations');
 
 
-<<<<<<< HEAD
-=======
+
 // Couleurs des types
 const typeColors = {
   normal: '#A8A878',
@@ -31,6 +30,15 @@ const typeColors = {
   steel: '#B8B8D0',
   fairy: '#EE99AC'
 };
+
+
+
+// Données
+let searchHistory = JSON.parse(localStorage.getItem('pokemonHistory')) || [];
+const TOTAL_POKEMON = 1025; // Nombre total de Pokémon dans l'API
+
+
+
 // Générer des IDs aléatoires uniques
 function getRandomPokemonIds(count) {
   const ids = new Set();
@@ -140,4 +148,89 @@ function formatStatName(name) {
   };
   return statNames[name] || name;
 }
->>>>>>> fd8c7d5 (update : searching pokemons)
+
+// Recommandations
+async function loadRecommendations() {
+  recommendationsContainer.innerHTML = '<div class="loading">Chargement</div>';
+  
+  try {
+    const randomIds = getRandomPokemonIds(5);
+    const pokemonPromises = randomIds.map(id => 
+      fetch(`https://pokeapi.co/api/v2/pokemon/${id}`)
+        .then(r => r.json())
+        .catch(() => null) // Ignorer les erreurs pour des IDs invalides
+    );
+    
+    const pokemons = (await Promise.all(pokemonPromises)).filter(p => p !== null);
+    
+    recommendationsContainer.innerHTML = pokemons.map(pokemon => {
+      const id = String(pokemon.id).padStart(3, '0');
+      const image = pokemon.sprites.front_default;
+      
+      return `
+        <div class="recommendation-item" onclick="fetchPokemon('${pokemon.name}')">
+          <img src="${image}" alt="${pokemon.name}" />
+          <div class="recommendation-info">
+            <div class="recommendation-name">${pokemon.name}</div>
+            <div class="recommendation-id">#${id}</div>
+          </div>
+        </div>
+      `;
+    }).join('');
+    
+  } catch (error) {
+    recommendationsContainer.innerHTML = '<p class="empty-state">Erreur de chargement</p>';
+  }
+}
+
+// Historique
+function addToHistory(pokemon) {
+  const id = String(pokemon.id).padStart(3, '0');
+  const historyItem = {
+    id: pokemon.id,
+    name: pokemon.name,
+    image: pokemon.sprites.front_default,
+    formattedId: id
+  };
+  
+  // Supprimer les doublons
+  searchHistory = searchHistory.filter(item => item.id !== pokemon.id);
+  
+  // Ajouter au début
+  searchHistory.unshift(historyItem);
+  
+  // Limiter à 10 éléments
+  if (searchHistory.length > 10) {
+    searchHistory = searchHistory.slice(0, 10);
+  }
+  
+  // Sauvegarder
+  localStorage.setItem('pokemonHistory', JSON.stringify(searchHistory));
+  
+  displayHistory();
+}
+
+function displayHistory() {
+  if (searchHistory.length === 0) {
+    historyContainer.innerHTML = '<p class="empty-state">Aucun Pokémon recherché</p>';
+    return;
+  }
+  
+  historyContainer.innerHTML = searchHistory.map(item => `
+    <div class="history-item" onclick="fetchPokemon('${item.name}')">
+      <img src="${item.image}" alt="${item.name}" />
+      <div class="history-info">
+        <div class="history-name">${item.name}</div>
+        <div class="history-id">#${item.formattedId}</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+function clearHistory() {
+  if (confirm('Voulez-vous vraiment effacer l\'historique ?')) {
+    searchHistory = [];
+    localStorage.removeItem('pokemonHistory');
+    displayHistory();
+  }
+}
