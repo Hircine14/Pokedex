@@ -37,7 +37,9 @@
         
         <div class="screen-content" id="main-screen">
           <div class="screen-standby">
-            <div class="pokeball-icon">⚪</div>
+            <div class="pokeball-icon">
+              <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/items/poke-ball.png" alt="Pokéball" />
+            </div>
             <p>Recherchez un Pokémon...</p>
           </div>
         </div>
@@ -48,7 +50,6 @@
         </div>
       </div>
 
-      <!-- Contrôles -->
       <div class="controls">
         <div class="search-section">
           <input 
@@ -57,29 +58,25 @@
             placeholder="Nom ou numéro..."
             autocomplete="off"
           />
-          <button id="search-btn" class="btn-search">GO</button>
+          <button id="search-btn" class="btn-search">SEARCH</button>
         </div>
       </div>
     </div>
 
-    <!-- Partie droite du Pokédex -->
     <div class="pokedex-right">
-      <!-- Section Recommandations -->
       <div class="side-panel">
         <div class="panel-header">
-          <span class="panel-icon">⭐</span>
+          <span class="panel-icon"></span>
           <h3>À découvrir</h3>
           <button id="refresh-recommendations" class="btn-clear" title="Nouvelles suggestions">🔄</button>
         </div>
         <div class="recommendations" id="recommendations">
-          <!-- Les recommandations seront insérées ici -->
         </div>
       </div>
 
-      <!-- Section Historique -->
       <div class="side-panel">
         <div class="panel-header">
-          <span class="panel-icon">📜</span>
+          <span class="panel-icon"></span>
           <h3>Historique</h3>
           <button id="clear-history" class="btn-clear">✕</button>
         </div>
