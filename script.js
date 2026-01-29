@@ -32,7 +32,10 @@ const typeColors = {
   steel: '#B8B8D0',
   fairy: '#EE99AC'
 };
+<<<<<<< HEAD
 
+=======
+>>>>>>> b9bc4bd124f057f22443f8b043c08e7a71ab2a02
 // Générer des IDs aléatoires uniques
 function getRandomPokemonIds(count) {
   const ids = new Set();
@@ -144,9 +147,12 @@ function formatStatName(name) {
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 =======
 >>>>>>> 9acba9c (update : recommandations)
+=======
+>>>>>>> b9bc4bd124f057f22443f8b043c08e7a71ab2a02
 // Recommandations
 async function loadRecommendations() {
   recommendationsContainer.innerHTML = '<div class="loading">Chargement</div>';
