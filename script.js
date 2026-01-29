@@ -143,7 +143,10 @@ function formatStatName(name) {
   return statNames[name] || name;
 }
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 9acba9c (update : recommandations)
 // Recommandations
 async function loadRecommendations() {
   recommendationsContainer.innerHTML = '<div class="loading">Chargement</div>';
