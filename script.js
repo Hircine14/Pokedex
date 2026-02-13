@@ -6,6 +6,7 @@ const recommendationsContainer = document.getElementById('recommendations');
 const historyContainer = document.getElementById('history');
 const clearHistoryBtn = document.getElementById('clear-history');
 const refreshRecommendationsBtn = document.getElementById('refresh-recommendations');
+///Test
 
 // Données
 let searchHistory = JSON.parse(localStorage.getItem('pokemonHistory')) || [];
